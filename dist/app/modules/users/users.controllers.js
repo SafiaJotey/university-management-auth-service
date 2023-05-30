@@ -12,21 +12,24 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const app_1 = __importDefault(require("./app"));
-const index_1 = __importDefault(require("./config/index"));
-function bootstrap() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield mongoose_1.default.connect(index_1.default.database_url);
-            console.log('database connected successfully');
-            app_1.default.listen(index_1.default.port, () => {
-                console.log(`Example app listening on port ${index_1.default.port}`);
-            });
-        }
-        catch (error) {
-            console.log('database connection failed', error);
-        }
-    });
-}
-bootstrap();
+const users_services_1 = __importDefault(require("./users.services"));
+const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { user } = req.body;
+        const newUser = yield users_services_1.default.createUser(user);
+        res.status(200).json({
+            success: true,
+            message: 'successfully create a new user!',
+            data: newUser,
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            success: false,
+            message: 'Cannot create an user',
+        });
+    }
+});
+exports.default = {
+    createUser,
+};

@@ -12,21 +12,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = __importDefault(require("mongoose"));
-const app_1 = __importDefault(require("./app"));
-const index_1 = __importDefault(require("./config/index"));
-function bootstrap() {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            yield mongoose_1.default.connect(index_1.default.database_url);
-            console.log('database connected successfully');
-            app_1.default.listen(index_1.default.port, () => {
-                console.log(`Example app listening on port ${index_1.default.port}`);
-            });
-        }
-        catch (error) {
-            console.log('database connection failed', error);
-        }
-    });
-}
-bootstrap();
+const config_1 = __importDefault(require("../../../config"));
+const users_model_1 = require("./users.model");
+const users_utility_1 = require("./users.utility");
+const createUser = (user) => __awaiter(void 0, void 0, void 0, function* () {
+    //generate increment id
+    const id = yield (0, users_utility_1.generateUserId)();
+    user.id = id;
+    //default password for new user
+    if (!user.password) {
+        user.password = config_1.default.deafult_user_password;
+    }
+    const newUser = yield users_model_1.User.create(user);
+    if (!newUser) {
+        throw new Error('Failed to create new user');
+    }
+    return newUser;
+});
+exports.default = {
+    createUser,
+};
