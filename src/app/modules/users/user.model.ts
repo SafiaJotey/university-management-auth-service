@@ -1,5 +1,5 @@
 import { Model, Schema, model } from 'mongoose'
-import { IUser } from './users.interface'
+import { IUser } from './user.interface'
 // Create a new Model type that knows about IUserMethods...
 type UserModel = Model<IUser, object>
 
