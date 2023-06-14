@@ -1,11 +1,12 @@
 import { Response } from 'express'
-import { ISendresponse } from '../Interfaces/ISendResponse'
+import { ISendresponse } from '../Interfaces/sendResponseInterface'
 
 const sendResponse = <T>(res: Response, data: ISendresponse<T>): void => {
   const responseData: ISendresponse<T> = {
     statusCode: data.statusCode,
     success: data.success,
-    messege: data.messege || null,
+    message: data.message || null,
+    meta: data.meta,
     data: data.data || null,
   }
 

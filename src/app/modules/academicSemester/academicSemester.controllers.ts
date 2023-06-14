@@ -1,7 +1,10 @@
 import { NextFunction, Request, Response } from 'express'
-import status from 'http-status'
+import { default as httpStatus, default as status } from 'http-status'
+import { pagination } from '../../../constants/pagination'
 import { catchAsync } from '../../../shared/catchAsync'
+import { pick } from '../../../shared/pick'
 import sendResponse from '../../../shared/sendResponse'
+import { IAcademicSemester } from './academicSemester.interface'
 import { AcademicSemesterServices } from './academicSemester.sevices'
 
 const createSemester = catchAsync(
@@ -14,8 +17,25 @@ const createSemester = catchAsync(
     sendResponse(res, {
       statusCode: status.OK,
       success: true,
-      messege: 'Semester created successfully',
+      message: 'Semester created successfully',
       data: newSemester,
+    })
+    next()
+  }
+)
+const gettAllSemester = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const paginationOption = pick(req.query, pagination)
+
+    const result = await AcademicSemesterServices.getAllSemester(
+      paginationOption
+    )
+    sendResponse<IAcademicSemester[]>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'semester retrived successfully',
+      meta: result.meta,
+      data: result.data,
     })
     next()
   }
@@ -23,4 +43,5 @@ const createSemester = catchAsync(
 
 export const AcademicSemesterControllers = {
   createSemester,
+  gettAllSemester,
 }
