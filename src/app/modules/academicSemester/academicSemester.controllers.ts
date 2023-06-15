@@ -24,7 +24,7 @@ const createSemester = catchAsync(
     next()
   }
 )
-const gettAllSemester = catchAsync(
+const getAllSemester = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const filters: any = pick(
@@ -40,15 +40,29 @@ const gettAllSemester = catchAsync(
     sendResponse<IAcademicSemester[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'semester retrived successfully',
+      message: 'semesters retrived successfully',
       meta: result.meta,
       data: result.data,
     })
     next()
   }
 )
+const getSingleSemester = catchAsync(async (req: Request, res: Response) => {
+  const id: string = req.params.id
+
+  const result = await AcademicSemesterServices.getSingleSemester(id)
+  sendResponse<IAcademicSemester>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'semester retrived successfully',
+
+    data: result,
+  })
+  // next()
+})
 
 export const AcademicSemesterControllers = {
   createSemester,
-  gettAllSemester,
+  getAllSemester,
+  getSingleSemester,
 }

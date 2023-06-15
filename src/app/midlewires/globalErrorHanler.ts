@@ -21,6 +21,12 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     statusCode = simplifiedError.statusCode
     message = simplifiedError.message
     errorMessages = simplifiedError.errorMessages
+  } else if (error?.name === 'CastError') {
+    res.status(200).json({ error })
+    // const simplifiedError = handleZodError(error)
+    // statusCode = simplifiedError.statusCode
+    // message = simplifiedError.message
+    // errorMessages = simplifiedError.errorMessages
   } else if (error instanceof ZodError) {
     const simplifiedError = handleZodError(error)
     statusCode = simplifiedError.statusCode

@@ -6,7 +6,7 @@ const sendResponse = <T>(res: Response, data: ISendresponse<T>): void => {
     statusCode: data.statusCode,
     success: data.success,
     message: data.message || null,
-    meta: data.meta,
+    meta: data.meta || undefined,
     data: data.data || null,
   }
 
