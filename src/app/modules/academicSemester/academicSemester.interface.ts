@@ -18,10 +18,13 @@ export type IAcademicSemesterCode = '01' | '02' | '03'
 // creating interface for academicSemester
 export type IAcademicSemester = {
   title: IAcademicSemesterTitle
-  year: number
+  year: string
   code: IAcademicSemesterCode
   startMonth: IAcademicSemesterMonth
   endMonth: IAcademicSemesterMonth
+}
+export type IAcademicSemesterFilters = {
+  searchTerm: string
 }
 
 // Create a new Model type that knows aboutIAcademicSemester...

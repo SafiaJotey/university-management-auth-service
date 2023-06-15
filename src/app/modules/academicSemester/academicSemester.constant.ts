@@ -31,10 +31,13 @@ const academicSemesterMappingTitleCode: {
   Summer: '02',
   Fall: '03',
 }
-
+const academicSemesterSearchableFields = ['title', 'code', 'year']
+const academicSemesterfilterableFields = ['searchTerm', 'title', 'code', 'year']
 export const academicSemesterConstant = {
   academicSemesterMonth,
   academicSemesterTitle,
   academicSemesterCode,
   academicSemesterMappingTitleCode,
+  academicSemesterSearchableFields,
+  academicSemesterfilterableFields,
 }

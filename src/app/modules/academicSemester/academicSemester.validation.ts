@@ -13,7 +13,7 @@ const createAcademicSemester = z.object({
         required_error: 'Title is required',
       }
     ),
-    year: z.number({
+    year: z.string({
       required_error: 'Year is required',
     }),
     code: z.enum(
