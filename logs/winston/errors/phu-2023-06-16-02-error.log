@@ -26,3 +26,6 @@ Fri Jun 16 2023 2:26:27 } [PH] error: globalErrorHandler [
     "message": "Invalid enum value. Expected '01' | '02' | '03', received '05'"
   }
 ]
+Fri Jun 16 2023 2:41:27 } [PH] error: globalErrorHandler Cast to ObjectId failed for value "648b4232dfaf89ca901a" (type string) at path "_id" for model "AcademicSemester"
+Fri Jun 16 2023 2:50:48 } [PH] error: globalErrorHandler Cast to ObjectId failed for value "648b4232dfaf89ca901a" (type string) at path "_id" for model "AcademicSemester"
+Fri Jun 16 2023 2:57:22 } [PH] error: globalErrorHandler Cast to ObjectId failed for value "648b4232dfaf89ca901a" (type string) at path "_id" for model "AcademicSemester"
