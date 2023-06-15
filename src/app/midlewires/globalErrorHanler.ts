@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ErrorRequestHandler } from 'express'
 import { ZodError } from 'zod'
 import { IGenericErrorMessage } from '../../Interfaces/errorMessageInterface'
@@ -61,7 +62,6 @@ const globalErrorHandler: ErrorRequestHandler = (error, req, res, next) => {
     errorMessages,
     stack: config.env !== 'production' ? error.stack : undefined,
   })
-  next()
 }
 
 export default globalErrorHandler

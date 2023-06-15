@@ -1,0 +1,21 @@
+Fri Jun 16 2023 3:19:51 } [PH] error: globalErrorHandler Cast to ObjectId failed for value "648b4232dfaf89ca901a" (type string) at path "_id" for model "AcademicSemester"
+Fri Jun 16 2023 3:49:54 } [PH] error: globalErrorHandler [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "undefined",
+    "path": [
+      "body",
+      "year"
+    ],
+    "message": "Year is required"
+  }
+]
+Fri Jun 16 2023 3:50:59 } [PH] error: globalErrorHandler [
+  {
+    "code": "custom",
+    "message": "either both title and code should be provided or neither",
+    "path": []
+  }
+]
+Fri Jun 16 2023 3:53:51 } [PH] error: globalErrorHandler Invalid course code

@@ -2,6 +2,44 @@ import { z } from 'zod'
 import { academicSemesterConstant } from './academicSemester.constant'
 
 //Zod Validation
+const updateAcademicSemester = z
+  .object({
+    body: z.object({
+      title: z
+        .enum([...academicSemesterConstant.academicSemesterTitle] as [
+          string,
+          ...string[]
+        ])
+        .optional(),
+      year: z.string().optional(),
+      code: z
+        .enum([...academicSemesterConstant.academicSemesterCode] as [
+          string,
+          ...string[]
+        ])
+        .optional(),
+      startMonth: z
+        .enum([...academicSemesterConstant.academicSemesterMonth] as [
+          string,
+          ...string[]
+        ])
+        .optional(),
+      endMonth: z
+        .enum([...academicSemesterConstant.academicSemesterMonth] as [
+          string,
+          ...string[]
+        ])
+        .optional(),
+    }),
+  })
+  .refine(
+    data =>
+      (data.body.title && data.body.code) ||
+      (!data.body.title && !data.body.code),
+    {
+      message: 'either both title and code should be provided or neither',
+    }
+  )
 const createAcademicSemester = z.object({
   body: z.object({
     title: z.enum(
@@ -48,4 +86,5 @@ const createAcademicSemester = z.object({
 
 export const academicSemesterValidation = {
   createAcademicSemester,
+  updateAcademicSemester,
 }
