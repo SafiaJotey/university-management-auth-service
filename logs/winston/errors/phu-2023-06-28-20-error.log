@@ -1,0 +1,6 @@
+Wed Jun 28 2023 20:4:30 } [PH] error: globalErrorHandler E11000 duplicate key error collection: university-management.students index: email_1 dup key: { email: "user@gmail.com" }
+Wed Jun 28 2023 20:8:52 } [PH] error: globalErrorHandler Cast to ObjectId failed for value "240100001" (type string) at path "_id" for model "User"
+Wed Jun 28 2023 20:14:50 } [PH] error: globalErrorHandler E11000 duplicate key error collection: university-management.students index: id_1 dup key: { id: "240100001" }
+Wed Jun 28 2023 20:15:50 } [PH] error: globalErrorHandler E11000 duplicate key error collection: university-management.students index: id_1 dup key: { id: "240100001" }
+Wed Jun 28 2023 20:17:51 } [PH] error: globalErrorHandler Cannot populate path `student.academicSemister` because it is not in your schema. Set the `strictPopulate` option to false to override.
+Wed Jun 28 2023 20:30:4 } [PH] error: globalErrorHandler Cannot populate path `student.academicSemister` because it is not in your schema. Set the `strictPopulate` option to false to override.
