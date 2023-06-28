@@ -1,8 +1,6 @@
 import { Schema, model } from 'mongoose'
 import { IUser, UserModel } from './user.interface'
-// Create a new Model type that knows about IUserMethods...
 
-//  Creating a Schema for users
 const userSchema = new Schema<IUser>(
   {
     id: {
@@ -18,11 +16,24 @@ const userSchema = new Schema<IUser>(
       type: String,
       required: true,
     },
+    student: {
+      type: Schema.Types.ObjectId,
+      ref: 'Student',
+    },
+    // faculty: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Faculty',
+    // },
+    // Admin: {
+    //   type: Schema.Types.ObjectId,
+    //   ref: 'Admin',
+    // },
   },
   {
     timestamps: true,
+    toJSON: {
+      virtuals: true,
+    },
   }
 )
-
-// Creating a Model.
 export const User = model<IUser, UserModel>('User', userSchema)
