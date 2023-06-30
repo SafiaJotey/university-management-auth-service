@@ -4,7 +4,7 @@ import { Schema, model } from 'mongoose'
 import config from '../../../config'
 import { IUser, UserModel } from './user.interface'
 
-const userSchema = new Schema<IUser>(
+const userSchema = new Schema<IUser, UserModel>(
   {
     id: {
       type: String,
@@ -18,6 +18,11 @@ const userSchema = new Schema<IUser>(
     password: {
       type: String,
       required: true,
+    },
+    needsPasswordChange: {
+      type: Boolean,
+      required: true,
+      default: true,
     },
     student: {
       type: Schema.Types.ObjectId,
@@ -40,6 +45,23 @@ const userSchema = new Schema<IUser>(
   }
 )
 
+userSchema.statics.isUserExist = async function (
+  id: string
+): Promise<Pick<
+  IUser,
+  'id' | 'password' | 'role' | 'needsPasswordChange'
+> | null> {
+  return await User.findOne(
+    { id },
+    { id: 1, password: 1, needsPasswordChange: 1 }
+  )
+}
+userSchema.statics.isPasswordMatch = async function (
+  givenPassword: string,
+  savePassword: string
+): Promise<boolean> {
+  return await bcrypt.compare(givenPassword, savePassword)
+}
 userSchema.pre('save', async function (next) {
   const user = this
   user.password = await bcrypt.hash(

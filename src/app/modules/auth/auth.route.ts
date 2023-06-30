@@ -1,15 +1,15 @@
-import express from 'express'
+// import express from 'express'
 
-import validateRequest from '../../midlewires/validateRequest'
+// import validateRequest from '../../midlewires/validateRequest'
 
-import { AuthValidation } from './auth.validation'
-import { AuthController } from './auth.controller.s'
-const router = express.Router()
+// import { AuthController } from './auth.controllers'
+// import { AuthValidation } from './auth.validation'
+// const router = express.Router()
 
-router.post(
-  '/login',
-  validateRequest(AuthValidation.loginZodSchema),
-  AuthController.login
-)
+// router.post(
+//   '/login',
+//   validateRequest(AuthValidation.loginZodSchema),
+//   AuthController.loginUser
+// )
 
-export const AuthRoutes = router
+// export const AuthRoutes = router
