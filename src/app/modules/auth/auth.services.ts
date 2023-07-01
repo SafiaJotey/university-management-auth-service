@@ -6,9 +6,7 @@ import { jwtHelpers } from '../../../helpers/jwtHelpers'
 import { User } from '../user/user.model'
 import { ILoginUser, ILoginUserResponse } from './auth.interface'
 
-const loginUser = async (
-  payload: ILoginUser
-): Promise<ILoginUserResponse | null> => {
+const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   const { id, password } = payload
   const isUserExist = await User.isUserExist(id)
   if (isUserExist.password && !isUserExist) {

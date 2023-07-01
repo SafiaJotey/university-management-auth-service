@@ -8,6 +8,7 @@ import { UserService } from './user.services'
 
 const createStudent = catchAsync(async (req: Request, res: Response) => {
   const { student, ...user } = req.body
+  console.log(req.cookies, 'cookies')
 
   const newUser = await UserService.createStudent(student, user)
 
@@ -35,6 +36,7 @@ const createFaculy: RequestHandler = catchAsync(
 const createAdmin: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
     const { admin, ...userData } = req.body
+
     const result = await UserService.createAdmin(admin, userData)
 
     sendResponse<IUser>(res, {
